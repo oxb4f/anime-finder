@@ -19,8 +19,8 @@ export default class API {
    }
   `;
 
-  public async getAnimeInfoByImage(photoURL: string): Promise<AnimeInfo> {
-    const anilistId = (
+  public getAnimeInfoByImage = async (photoURL: string): Promise<AnimeInfo> => {
+    const anilistID = (
       await axios.get(
         `${this._baseTraceMoeURL}${this._searchEndpoint}?${qs.stringify({
           url: photoURL,
@@ -28,14 +28,20 @@ export default class API {
       )
     ).data.result[0].anilist;
 
+    return this.getAnimeInfoByAnilistID(anilistID);
+  };
+
+  public getAnimeInfoByAnilistID = async (
+    anilistID: number,
+  ): Promise<AnimeInfo> => {
     const res = await axios.post(this._baseAnilistURL, {
       query: this._anilistSearchQuery,
-      variables: { id: anilistId },
+      variables: { id: anilistID },
     });
 
     return {
       titleEnglish: res.data.data.Media.title.english,
       titleNative: res.data.data.Media.title.native,
     };
-  }
+  };
 }
