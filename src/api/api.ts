@@ -6,11 +6,11 @@ export default class API {
   private readonly baseURL: string = 'https://api.trace.moe/';
   private readonly searchEndpoint: string = 'search/';
 
-  public async getAnimeByImage(
-    photoURL: string,
-  ): Promise<AxiosResponse> {
+  public async getAnimeByImage(photoURL: string): Promise<AxiosResponse> {
     return axios.get(
-      `${this.baseURL + this.searchEndpoint}?${qs.stringify({ url: photoURL })}`,
+      `${this.baseURL + this.searchEndpoint}?${qs.stringify({
+        url: photoURL,
+      })}`,
     );
   }
 }
