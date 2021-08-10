@@ -10,9 +10,11 @@ export default function onPhoto(bot: Telegraf<Context<Update>>): void {
     ).toString();
 
     try {
-      const res = await api.getAnimeByImage(photoURL);
+      const res = await api.getAnimeInfoByImage(photoURL);
 
-      await ctx.reply(res.data.result[0].anilist.toString());
+      await ctx.reply(
+        `English title: ${res.titleEnglish}\nNative title: ${res.titleNative}`,
+      );
     } catch (err) {
       console.error(err);
     }
