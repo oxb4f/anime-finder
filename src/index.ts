@@ -1,20 +1,12 @@
-import { Telegraf } from 'telegraf';
 import * as dotenv from 'dotenv';
 import * as findConfig from 'find-config';
 
-import { handlers } from './handlers';
-
 dotenv.config({ path: findConfig('.env') as string | undefined });
 
-if (process.env.BOT_TOKEN === undefined) {
-  throw new Error('BOT_TOKEN is undefined');
-}
+import { bot } from './bot';
+import { handlers } from './handlers';
 
-const bot = new Telegraf(process.env.BOT_TOKEN);
-
-for (const [command, handler] of Object.entries(handlers)) {
-  bot.command(command, handler);
-}
+handlers.forEach((handler) => handler(bot));
 
 bot.launch();
 

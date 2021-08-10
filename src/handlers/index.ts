@@ -1,8 +1,6 @@
-import startHandler from './start-handler';
-import { Context } from 'telegraf';
+import { commandHandlers, startCommand } from './commands';
+import { dataHandlers, onPhoto } from './data';
 
-const handlers: Record<string, (ctx: Context) => Promise<void>> = {
-  start: startHandler,
-};
+const handlers = [...commandHandlers, ...dataHandlers];
 
-export { handlers, startHandler };
+export { handlers, startCommand, onPhoto };
