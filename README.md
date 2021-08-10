@@ -1,3 +1,3 @@
 # anime-finder
 
-Bot for getting anime by image
+Bot for getting anime info by image
