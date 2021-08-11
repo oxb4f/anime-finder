@@ -12,9 +12,15 @@ export default function onPhoto(bot: Telegraf<Context<Update>>): void {
     try {
       const res = await api.getAnimeInfoByImage(photoURL);
 
-      await ctx.reply(
-        `English title: ${res.titleEnglish}\nNative title: ${res.titleNative}`,
-      );
+      const animeInfo = `<b>English title</b>: ${res.titleEnglish}
+<b>Native title</b>: ${res.titleNative}
+<b>Description:</b>\n${res.description.replace(/<br>/g, '')}
+<b>Episodes:</b> ${res.episodes}
+<b>Episode duration:</b> ~${res.episodeDuration}
+ `;
+      await ctx.telegram.sendMessage(ctx.message.chat.id, animeInfo, {
+        parse_mode: 'HTML',
+      });
     } catch (err) {
       console.error(err);
     }

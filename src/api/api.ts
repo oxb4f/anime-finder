@@ -15,6 +15,9 @@ export default class API {
           english
           native
         }
+        episodes
+        description
+        duration
      }
    }
   `;
@@ -42,6 +45,9 @@ export default class API {
     return {
       titleEnglish: res.data.data.Media.title.english,
       titleNative: res.data.data.Media.title.native,
+      episodes: res.data.data.Media.episodes,
+      description: res.data.data.Media.description,
+      episodeDuration: res.data.data.Media.duration,
     };
   };
 }
