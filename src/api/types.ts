@@ -4,6 +4,8 @@ interface AnimeInfo {
   episodes: number;
   description: string;
   episodeDuration: number;
+  genres: string[];
+  averageScore: number;
 }
 
 export { AnimeInfo };

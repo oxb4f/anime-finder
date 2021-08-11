@@ -17,6 +17,8 @@ export default function onPhoto(bot: Telegraf<Context<Update>>): void {
 <b>Description:</b>\n${res.description.replace(/<br>/g, '')}
 <b>Episodes:</b> ${res.episodes}
 <b>Episode duration:</b> ~${res.episodeDuration}
+<b>Genres</b>: ${res.genres.map((tag) => '#' + tag).join(', ')}
+<b>Score</b>: ${res.averageScore}
  `;
       await ctx.telegram.sendMessage(ctx.message.chat.id, animeInfo, {
         parse_mode: 'HTML',

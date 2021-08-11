@@ -18,6 +18,8 @@ export default class API {
         episodes
         description
         duration
+        genres
+        averageScore
      }
    }
   `;
@@ -48,6 +50,8 @@ export default class API {
       episodes: res.data.data.Media.episodes,
       description: res.data.data.Media.description,
       episodeDuration: res.data.data.Media.duration,
+      genres: res.data.data.Media.genres,
+      averageScore: res.data.data.Media.averageScore,
     };
   };
 }
