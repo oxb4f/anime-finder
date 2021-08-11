@@ -1,7 +1,11 @@
 import * as dotenv from 'dotenv';
 import * as findConfig from 'find-config';
+import * as fs from 'fs';
 
-dotenv.config({ path: findConfig('.env') as string | undefined });
+const envConfig = dotenv.parse(fs.readFileSync(findConfig('.env') as string));
+for (const k in envConfig) {
+  process.env[k] = envConfig[k];
+}
 
 import { bot } from './bot';
 import { handlers } from './handlers';
