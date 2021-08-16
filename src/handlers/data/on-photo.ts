@@ -3,7 +3,7 @@ import { Update } from 'typegram';
 
 import { api } from '../../api';
 
-export default function onPhoto(bot: Telegraf<Context<Update>>): void {
+export function onPhoto(bot: Telegraf<Context<Update>>): void {
   bot.on('photo', async (ctx) => {
     const photoURL = (
       await ctx.telegram.getFileLink(ctx.message.photo[0].file_id)

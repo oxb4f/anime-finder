@@ -1,4 +1,4 @@
-interface AnimeInfo {
+export interface AnimeInfo {
   titleEnglish: string | null;
   titleNative: string;
   episodes: number;
@@ -7,5 +7,3 @@ interface AnimeInfo {
   genres: string[];
   averageScore: number;
 }
-
-export { AnimeInfo };

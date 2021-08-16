@@ -1,5 +1,3 @@
-import API from './api';
+import { API } from './api';
 
-const api = new API();
-
-export { api };
+export const api = new API();
