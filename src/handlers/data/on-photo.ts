@@ -5,12 +5,12 @@ import { api } from '../../api';
 
 export function onPhoto(bot: Telegraf<Context<Update>>): void {
   bot.on('photo', async (ctx) => {
-    const photoURL = (
+    const photoUrl = (
       await ctx.telegram.getFileLink(ctx.message.photo[0].file_id)
     ).toString();
 
     try {
-      const res = await api.getAnimeInfoByImage(photoURL);
+      const res = await api.getAnimeInfoByImage(photoUrl);
 
       const animeInfo = `<b>English title</b>: ${res.titleEnglish}
 <b>Native title</b>: ${res.titleNative}

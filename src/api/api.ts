@@ -3,11 +3,11 @@ import { stringify as makeQueryString } from 'qs';
 
 import { AnimeInfo } from './types';
 
-export class API {
-  private readonly _baseTraceMoeURL: string = 'https://api.trace.moe/';
-  private readonly _searchEndpoint: string = 'search/';
-  private readonly _baseAnilistURL: string = 'https://graphql.anilist.co';
-  private readonly _anilistSearchQuery: string = `
+export class Api {
+  private readonly baseTraceMoeUrl: string = 'https://api.trace.moe/';
+  private readonly searchEndpoint: string = 'search/';
+  private readonly baseAnilistUrl: string = 'https://graphql.anilist.co';
+  private readonly anilistSearchQuery: string = `
     query ($id: Int) {
       Media (id: $id, type: ANIME) {
         id
@@ -25,23 +25,23 @@ export class API {
   `;
 
   public getAnimeInfoByImage = async (photoURL: string): Promise<AnimeInfo> => {
-    const anilistID = (
+    const anilistId = (
       await axios.get(
-        `${this._baseTraceMoeURL}${this._searchEndpoint}?${makeQueryString({
+        `${this.baseTraceMoeUrl}${this.searchEndpoint}?${makeQueryString({
           url: photoURL,
         })}`,
       )
     ).data.result[0].anilist;
 
-    return this.getAnimeInfoByAnilistID(anilistID);
+    return this.getAnimeInfoByAnilistId(anilistId);
   };
 
-  public getAnimeInfoByAnilistID = async (
-    anilistID: number,
+  public getAnimeInfoByAnilistId = async (
+    anilistId: number,
   ): Promise<AnimeInfo> => {
-    const res = await axios.post(this._baseAnilistURL, {
-      query: this._anilistSearchQuery,
-      variables: { id: anilistID },
+    const res = await axios.post(this.baseAnilistUrl, {
+      query: this.anilistSearchQuery,
+      variables: { id: anilistId },
     });
 
     return {

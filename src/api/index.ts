@@ -1,3 +1,3 @@
-import { API } from './api';
+import { Api } from './api';
 
-export const api = new API();
+export const api = new Api();
