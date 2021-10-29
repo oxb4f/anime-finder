@@ -1,7 +1,12 @@
-import { Telegraf } from 'telegraf';
+import { bot } from './bot';
+import * as commandHandlers from './handlers/commands';
+import * as dataHandlers from './handlers/data';
 
-if (process.env.BOT_TOKEN === undefined) {
-  throw new Error('BOT_TOKEN is not specified');
-}
+const handlers = [
+  ...Object.values(commandHandlers),
+  ...Object.values(dataHandlers),
+];
 
-export const bot = new Telegraf(process.env.BOT_TOKEN);
+handlers.forEach((handler) => handler(bot));
+
+export { bot, handlers };

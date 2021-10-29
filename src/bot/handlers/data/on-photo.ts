@@ -1,7 +1,7 @@
 import { Telegraf, Context } from 'telegraf';
 import { Update } from 'typegram';
 
-import { api } from '../../api';
+import { api } from '../../../api';
 
 export function onPhoto(bot: Telegraf<Context<Update>>): void {
   bot.on('photo', async (ctx) => {
